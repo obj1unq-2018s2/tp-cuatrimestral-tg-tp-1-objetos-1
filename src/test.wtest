@@ -1,0 +1,26 @@
+import campeones.*
+import items.*
+import oleadasMinions.*
+
+
+	test "estado del campeon"{
+		
+	// CAMPEON
+	var morganaDebil = new Campeon(vidaInicial=50, ataqueInicial=15)
+
+	// ITEMS
+	var anilloDeDoran1 = new AnilloDeDoran() 
+	var tomoAmplificador1 = new TomoAmplificador() 	
+	
+	// OLEADA
+	var segundaOleada = new OleadaMinions(cantidadDeMinions = 20 , plusDanio = 10) 	
+	var primeraOleada = new OleadaMinions(cantidadDeMinions = 10 , plusDanio = 5) 
+	
+		morganaDebil.equiparse(tomoAmplificador1)
+		morganaDebil.equiparse(anilloDeDoran1)
+		morganaDebil.atacarOleada(primeraOleada)
+		morganaDebil.atacarOleada(segundaOleada)
+		//morganaDebil.desequiparse(tomoAmplificador1)
+		assert.equals(morganaDebil.estaMuerto(),true)
+	}
+ 

@@ -1,11 +1,11 @@
 import campeones.*
 
-class Items{
+class Items {
 	
-	method agregarAtributos(campeon){
-		campeon.vidaAdicional(self)
-		campeon.ataqueAdicional(self)
-	}
+	//method agregarAtributos(campeon){
+	//	campeon.vidaAdicional(self)
+	//	campeon.ataqueAdicional(self)
+	//}
 }
 
 class AnilloDeDoran inherits Items {
@@ -15,12 +15,14 @@ class AnilloDeDoran inherits Items {
 
 	
 	method consecuenciasDeEquipado(campeon){
-		campeon.danioRecibido(campeon.danioRecibido() + 5) //NOSE SI SE PUEDE
+		//campeon.danioRecibido(campeon.danioRecibido() + 5) //NOSE SI SE PUEDE ------ AGUS:NO, DA ERROR
+		campeon.modificarDanio(5)
 	}
 	
 	method consecuenciasDeDesequipado(campeon){
-		if (campeon.danioRecibido() >= 10){campeon.danioRecibido(campeon.danioRecibido() -10)}  
-		else (campeon.danioRecibido(0))
+		//if (campeon.danioRecibido() >= 10){campeon.danioRecibido(campeon.danioRecibido() -10)}  
+		//else (campeon.danioRecibido(0))
+		campeon.modificarDanio(-10)
 	}		
 		
 }
@@ -31,12 +33,14 @@ class TomoAmplificador inherits Items {
 	method ataqueOtorgado(campeon) = campeon.danioRecibido() * 0.05
 	
 	method consecuenciasDeEquipado(campeon){
-		campeon.bloqueosDisponibles(campeon.bloqueosDisponibles() + 2) 
+		//campeon.bloqueosDisponibles(campeon.bloqueosDisponibles() + 2) 
+		campeon.modificarBloqueo(2)
 	}
 	
 	method consecuenciasDeDesequipado(campeon){
-		campeon.bloqueosDisponibles(campeon.bloqueosDisponibles() + 1)
-		campeon.danioRecibido(campeon.danioRecibido() + 30)
+		//campeon.bloqueosDisponibles(campeon.bloqueosDisponibles() + 1)
+		campeon.modificarBloqueo(1)
+		campeon.modificarDanio(30)
 	}			
 	
 }
@@ -44,11 +48,12 @@ class TomoAmplificador inherits Items {
 class SombreroDeRabadon inherits Items {
 	
 	method vidaOtorgada(campeon) = campeon.danioRecibido() * 0.25 + 5
-	method ataqueOtorgado(campeon) = campeon.ataqueInicial() * 2
+	method ataqueOtorgado(campeon) = campeon.ataqueInicial() * 0.05 * 2
 	
 	method consecuenciasDeEquipado(campeon){
-		campeon.bloqueosDisponibles(campeon.bloqueosDisponibles() + 2)
-		campeon.danioRecibido(campeon.danioRecibido() + 5)		 
+		//campeon.bloqueosDisponibles(campeon.bloqueosDisponibles() + 2)
+		campeon.modificarBloqueo(2)
+		campeon.modificarDanio(5)		 
 	}
 	
 	method consecuenciasDeDesequipado(campeon){}			

@@ -1,0 +1,25 @@
+import campeones.*
+import items.*
+import oleadasMinions.*
+
+describe "Test Etapa 1 - League of Leyends" {
+	
+	var gimli = new Campeon( vidaInicial=50 , ataqueInicial=15)
+	var minions1 = new OleadaMinions ( cantidadDeMinions= 10, plusDanio=25)
+	var anilloDoran1 = new AnilloDeDoran()
+	var tomoAmp1 = new TomoAmplificador()
+	
+	test "Etapa 1" {
+		
+		gimli.equiparse(anilloDoran1)
+		gimli.equiparse(tomoAmp1)
+		gimli.atacarOleada(minions1)
+		gimli.atacarOleada(minions1)
+		gimli.atacarOleada(minions1)
+		gimli.desequiparse(tomoAmp1)
+		gimli.desequiparse(anilloDoran1)
+		
+		assert.that(gimli.estaMuerto())
+		
+	}
+}

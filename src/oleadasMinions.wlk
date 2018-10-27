@@ -1,10 +1,16 @@
+import campeones.*
+
 class OleadaMinions{
 	var property cantidadDeMinions
 	var property plusDanio
 	
 	method danioOcasionado() = cantidadDeMinions + plusDanio
 	
-	method defenderse(campeon){
-		campeon.danioRecibido( self.danioOcasionado() )
+	method defenderseDeAtaque(campeon){
+		campeon.recibirAtaque( self.danioOcasionado() )
+	}
+	
+	method recibirAtaque(campeon) {
+		self.defenderseDeAtaque(campeon)
 	}
 }

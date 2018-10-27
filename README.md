@@ -48,6 +48,6 @@ Realizar, como mínimo, el siguiente test:
 * Crear un campeón con 50 puntos de vida y 15 de ataque. 
 * Equiparlo con un anillo de Doran y un Tomo Amplificador. 
 * Crear una Oleada de 10 minions con un plus de 5 puntos de daño.
-* Hacer que el campeón ataque a la oleada de minions y luego se desequipe el Tomo Amplificador. 
-* Probar que el campeón esta muerto tras haberse desequipado el tomo. 
-
+* Hacer que el campeón ataque a la oleada de minions tres veces.
+* Hacer que se desequipe el Tomo Amplificador y el Anillo.
+* Probar que el campeón esta muerto tras haberse desequipado.

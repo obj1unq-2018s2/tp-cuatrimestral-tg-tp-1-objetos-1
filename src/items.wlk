@@ -33,17 +33,18 @@ class TomoAmplificador {
 	
 }
 
-class SombreroDeRabadon  {
+class SombreroDeRabadon inherits TomoAmplificador {
 	
-	method vidaOtorgada(campeon) = campeon.danioRecibido() * 0.25 + 5
-	method ataqueOtorgado(campeon) = campeon.ataqueInicial() * 0.05 * 2
+	override method vidaOtorgada(campeon) = super(campeon) + 5
+	override method ataqueOtorgado(campeon) = super(campeon) * 2
 	
-	method consecuenciasDeEquipado(campeon){
-		campeon.modificarBloqueo(2)
-		campeon.modificarDanio(5)		 
+	override method consecuenciasDeEquipado(campeon){
+		super(campeon)
+		campeon.modificarDanio(5)
+				 
 	}
 	
-	method consecuenciasDeDesequipado(campeon){}			
+	override method consecuenciasDeDesequipado(campeon){}			
 }
 
 

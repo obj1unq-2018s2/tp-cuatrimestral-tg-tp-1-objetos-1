@@ -3,8 +3,8 @@ import oleadasMinions.*
 
 class Campeon{
 
-	var property vidaInicial
-	var property ataqueInicial
+	const property vidaInicial
+	const property ataqueInicial
 	/* vida inicial y ataque inicial, se asignan en cada campeon pero nunca se 
 	 * modifican durante la partida, por ahora */
 	
@@ -64,9 +64,4 @@ class Campeon{
 		bloqueosDisponibles += bloqueos 
 	}
 }
-
-
-
-
-
 

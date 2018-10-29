@@ -13,42 +13,25 @@ class Campeon{
 	/*bloqueosDisponibles y danio recibido se modifican durante el equipado
 	 * y el desequipado de items, ademas dentro de las batallas contra minions */
 	
-	var property inventario = [] // items que tiene equipados el campeon
-	
-	//var vidaAdicional = 0 
-	//var ataqueAdicional= 0 
-	/*debido a que no se puede modificar el ataque y la vida inicial se llevara
-	 * un registro de la vida adicional y ataque adicional que seria la vida
-	 * otorgen los items*/
-	
-	//method vidaAdicional(item){
-	//	vidaAdicional += item.vidaOtorgada(self)
-	//}    
-	/*es la vida adicional que se le suma al campeon dependiendo el item y los atrtibutos 
- 	* del campeon por ello se pasa por self */
+	var property inventario = [] // lista de items que tiene el campeon (se usa lista porque puede tener dos items iguales)
 	
 	method vida() {
 		return vidaInicial + inventario.sum(
 			{ item => item.vidaOtorgada(self) }
 		)
 	}
+	/*es la vida total que tiene un campeon teniendo en cuenta los puntos adicionales otorgados por los items */
 	
 	method ataque() {
 		return ataqueInicial + inventario.sum(
 			{ item => item.ataqueOtorgada(self) }
 		)
 	}
-	
-	//method ataqueAdicional(item){
-	//	ataqueAdicional += item.ataqueOtorgado(self) 
-	//}	
-	/*es el ataque adicional que se le suma al campeon dependiendo el item y los 
-	* atrtibutos del campeon por ello se pasa por self */
+	/*es el ataque total que tiene un campeon teniendo en cuenta los puntos adicionales otorgados por los items */
 	
 	
 	method equiparse(item){
 		inventario.add(item) 
-		//item.agregarAtributos(self) // no necesariamente necesita ir a la class ITEM, pero si queda mas legible.
 		item.consecuenciasDeEquipado(self)
 	}
 	
@@ -58,8 +41,6 @@ class Campeon{
 	}
 	
 	method atacarOleada(oleada){
-		//if(bloqueosDisponibles >= 1){bloqueosDisponibles -= 1}
-		//else{ oleada.defenderse(self) }
 		oleada.recibirAtaque(self)
 	}
 	
@@ -72,11 +53,6 @@ class Campeon{
 		}
 	}
 	
-	//method vidaTotal() = vidaInicial + vidaAdicional
-	
-	//method vidaActual() = (vidaInicial + vidaAdicional) - danioRecibido
-	
-	//method estaMuerto() = self.danioRecibido() >= self.vidaTotal()
 	
 	method estaMuerto() = danioRecibido >= self.vida()
 	
@@ -84,7 +60,7 @@ class Campeon{
 		danioRecibido += danio 
 	}
 	
-		method modificarBloqueo(bloqueos) {
+	method modificarBloqueo(bloqueos) {
 		bloqueosDisponibles += bloqueos 
 	}
 }

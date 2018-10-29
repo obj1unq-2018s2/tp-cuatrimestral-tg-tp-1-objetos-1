@@ -13,4 +13,5 @@ class OleadaMinions{
 	method recibirAtaque(campeon) {
 		self.defenderseDeAtaque(campeon)
 	}
+	/*se podria haber evitado este metodo, pero de esta manera podria resultar mas util a futuro */
 }

@@ -15,6 +15,8 @@ class Campeon{
 	
 	var property inventario = [] // lista de items que tiene el campeon (se usa lista porque puede tener dos items iguales)
 	
+	var property dineroDisponible
+	
 	method vida() {
 		return vidaInicial + inventario.sum(
 			{ item => item.vidaOtorgada(self) }
@@ -24,7 +26,7 @@ class Campeon{
 	
 	method ataque() {
 		return ataqueInicial + inventario.sum(
-			{ item => item.ataqueOtorgada(self) }
+			{ item => item.ataqueOtorgado(self) }
 		)
 	}
 	/*es el ataque total que tiene un campeon teniendo en cuenta los puntos adicionales otorgados por los items */
@@ -39,8 +41,18 @@ class Campeon{
 		inventario.remove(item)
 		item.consecuenciasDeDesequipado(self)
 	}
-	
+
+	method dineroGanadoEnTF(oleada)  {
+		if (self.ataque() >= oleada.cantidadDeMinions()){return oleada.cantidadDeMinions()}
+		else (return self.ataque())
+	} 
+/* es decir, cuando la oleada es abatida recibe como dinero la cantidad de
+ * minions que tenia dicha oleada, en caso de no ser abatida recibe de dinero el ataque
+ * del heroe, que es igual a la cantidad de minions abatidos.
+ */
+		
 	method atacarOleada(oleada){
+		dineroDisponible += self.dineroGanadoEnTF(oleada)
 		oleada.recibirAtaque(self)
 	}
 	
@@ -53,15 +65,35 @@ class Campeon{
 		}
 	}
 	
-	
-	method estaMuerto() = danioRecibido >= self.vida()
-	
 	method modificarDanio(danio) {
 		danioRecibido += danio 
 	}
-	
+		
 	method modificarBloqueo(bloqueos) {
 		bloqueosDisponibles += bloqueos 
 	}
+	
+	method puedeComprarItem(item) = self.dineroDisponible() >= item.precio()	
+	
+	method comprarItem(item){
+		if (self.puedeComprarItem(item)) {
+			self.equiparse(item)
+			dineroDisponible -= item.precio()
+		}
+	}
+	
+	method venderItem(item){
+		self.desequiparse(item)
+		dineroDisponible += item.precio() / 2
+	}
+	
+	method activarHabilidad(item){
+		if (item.poseeHabilidad()) {item.activarHabilidad(self)}
+	}
+	
+	
+	method estaMuerto() = danioRecibido >= self.vida()
+	
+
 }
 

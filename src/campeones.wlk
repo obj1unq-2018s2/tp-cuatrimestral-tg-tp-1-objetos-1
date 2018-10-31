@@ -42,7 +42,7 @@ class Campeon{
 		item.consecuenciasDeDesequipado(self)
 	}
 
-	method dineroGanadoEnTF(oleada)  {
+	method dineroGanadoEnTF(oleada)  { //TF = TEAM FIGHT(por ahora solo hay contra minions)
 		if (self.ataque() >= oleada.cantidadDeMinions()){return oleada.cantidadDeMinions()}
 		else (return self.ataque())
 	} 
@@ -55,6 +55,7 @@ class Campeon{
 		dineroDisponible += self.dineroGanadoEnTF(oleada)
 		oleada.recibirAtaque(self)
 	}
+
 	
 	method recibirAtaque(danio){
 		if (bloqueosDisponibles >= 1) {

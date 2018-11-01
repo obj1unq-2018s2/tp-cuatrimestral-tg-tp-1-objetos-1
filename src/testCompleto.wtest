@@ -1,0 +1,32 @@
+import campeones.*
+import items.*
+import oleadasMinions.*
+
+describe "Test complementarios" {
+	
+	//CAMPEONES
+	var nocturne = new Campeon(vidaInicial=100 , ataqueInicial=20)
+	
+	//ITEMS
+	var anilloDeDoran1 = new AnilloDeDoran()
+	
+		
+	// MANEJO DE INVENTARIO Y DINERO
+	
+	test "campeon quiere comprar item pero no tiene dinero sufiente" {
+		
+		assert.throwsExceptionWithMessage("Saldo insuficiente", { => 
+			nocturne.comprarItem(anilloDeDoran1)
+		})
+	}
+	
+	test "campeon tiene 100 de credito y compra un anillo de doran" {
+		
+		nocturne.dineroDisponible(300)
+		nocturne.comprarItem(anilloDeDoran1)
+		
+		assert.equals(nocturne.dineroDisponible(),0)
+		assert.that(nocturne.inventario().contains(anilloDeDoran1))
+	}
+	
+}

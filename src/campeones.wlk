@@ -89,6 +89,9 @@ class Campeon{
 			self.equiparse(item)
 			dineroDisponible -= item.precio()
 		}
+		else {
+			throw new UserException("Saldo insuficiente")
+		}
 	}
 	
 	method venderItem(item){
@@ -104,6 +107,9 @@ class Campeon{
 	
 	method estaMuerto() = danioRecibido >= self.vida()
 	
+}
 
+class UserException inherits wollok.lang.Exception {
+	constructor(_mensaje) = super(_mensaje)
 }
 

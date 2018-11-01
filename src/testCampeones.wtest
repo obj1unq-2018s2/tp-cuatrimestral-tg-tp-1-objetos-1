@@ -6,18 +6,12 @@ describe "Test Etapa 1 - League of Leyends" {
 	
 	// personajes
 	var gimli = new Campeon( vidaInicial=50 , ataqueInicial=15)
-	var pudge = new Campeon( vidaInicial=80 , ataqueInicial=70)
 	var minions1 = new OleadaMinions ( cantidadDeMinions= 10, plusDanio=25)
-	var minions2 = new OleadaMinions ( cantidadDeMinions= 15, plusDanio=35)
 	
 	// items
 	var anilloDoran1 = new AnilloDeDoran()
-	var anilloDoran2 = new AnilloDeDoran()
 	var tomoAmp1 = new TomoAmplificador()
 	var tomoAmp2 = new TomoAmplificador()
-	var tomoAmp3 = new TomoAmplificador()	
-	var sombreroDeRabadon1 = new SombreroDeRabadon()
-	var sombreroDeRabadon2 = new SombreroDeRabadon()
 	
 	test "Etapa 2" {
 		
@@ -28,8 +22,8 @@ describe "Test Etapa 1 - League of Leyends" {
 		gimli.atacarOleada(minions1)
 		gimli.desequiparse(anilloDoran1)		
 		gimli.desequiparse(tomoAmp1)
-		gimli.equiparse(tomoAmp3)
-		gimli.desequiparse(tomoAmp3)				
+		gimli.equiparse(tomoAmp2)
+		gimli.desequiparse(tomoAmp2)				
 	
 		assert.that(gimli.estaMuerto())	
 	}

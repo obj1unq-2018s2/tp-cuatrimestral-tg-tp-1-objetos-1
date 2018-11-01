@@ -15,7 +15,7 @@ class Campeon{
 	
 	var property inventario = [] // lista de items que tiene el campeon (se usa lista porque puede tener dos items iguales)
 	
-	var property dineroDisponible
+	var property dineroDisponible = 0 // lo inicializamos en cero
 	
 	method vida() {
 		return vidaInicial + inventario.sum(
@@ -30,8 +30,8 @@ class Campeon{
 		)
 	}
 	/*es el ataque total que tiene un campeon teniendo en cuenta los puntos adicionales otorgados por los items */
-	
-	
+
+			
 	method equiparse(item){
 		inventario.add(item) 
 		item.consecuenciasDeEquipado(self)
@@ -42,20 +42,28 @@ class Campeon{
 		item.consecuenciasDeDesequipado(self)
 	}
 
-	method dineroGanadoEnTF(oleada)  { //TF = TEAM FIGHT(por ahora solo hay contra minions)
-		if (self.ataque() >= oleada.cantidadDeMinions()){return oleada.cantidadDeMinions()}
-		else (return self.ataque())
-	} 
-/* es decir, cuando la oleada es abatida recibe como dinero la cantidad de
- * minions que tenia dicha oleada, en caso de no ser abatida recibe de dinero el ataque
- * del heroe, que es igual a la cantidad de minions abatidos.
- */
+	//method dineroGanadoEnTF(oleada)  { //TF = TEAM FIGHT(por ahora solo hay contra minions)
+	//	if (self.ataque() >= oleada.cantidadDeMinions()){return oleada.cantidadDeMinions()}
+	//	else (return self.ataque())
+	//} 
+	/* es decir, cuando la oleada es abatida recibe como dinero la cantidad de
+ 	* minions que tenia dicha oleada, en caso de no ser abatida recibe de dinero el ataque
+ 	* del heroe, que es igual a la cantidad de minions abatidos.
+ 	*/
 		
 	method atacarOleada(oleada){
-		dineroDisponible += self.dineroGanadoEnTF(oleada)
-		oleada.recibirAtaque(self)
+		if (oleada.estaAbatida()) { }
+		else {
+			//dineroDisponible += self.dineroGanadoEnTF(oleada)
+			//lo calcula con otro metodo que se llama desde el item
+			oleada.recibirAtaque(self)
+		}
 	}
-
+	
+	method ganarDinero(minionsEliminados) {
+		dineroDisponible += minionsEliminados
+		/* no se usa el setter por si se requiere cambiar el criterio */
+	}
 	
 	method recibirAtaque(danio){
 		if (bloqueosDisponibles >= 1) {
@@ -89,9 +97,10 @@ class Campeon{
 	}
 	
 	method activarHabilidad(item){
-		if (item.poseeHabilidad()) {item.activarHabilidad(self)}
+		if (item.habilidadDisponible()) {
+			item.activarHabilidad(self)
+		}
 	}
-	
 	
 	method estaMuerto() = danioRecibido >= self.vida()
 	

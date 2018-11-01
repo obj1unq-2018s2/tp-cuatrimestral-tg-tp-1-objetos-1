@@ -4,20 +4,22 @@ import oleadasMinions.*
 
 describe "Test Etapa 1 - League of Leyends" {
 	
-	
+	// personajes
 	var gimli = new Campeon( vidaInicial=50 , ataqueInicial=15)
-	var minions1 = new OleadaMinions ( cantidadDeMinions= 10, plusDanio=25)
-	var anilloDoran1 = new AnilloDeDoran()
-	var tomoAmp1 = new TomoAmplificador()
-	var tomoAmp3 = new TomoAmplificador()	
-	
 	var pudge = new Campeon( vidaInicial=80 , ataqueInicial=70)
+	var minions1 = new OleadaMinions ( cantidadDeMinions= 10, plusDanio=25)
 	var minions2 = new OleadaMinions ( cantidadDeMinions= 15, plusDanio=35)
-	var anilloDoran2 = new AnilloDeDoran()
-	var tomoAmp2 = new TomoAmplificador()
-	var sombreroDeRabadon1 = new SombreroDeRabadon()
 	
-	test "Etapa 1" {
+	// items
+	var anilloDoran1 = new AnilloDeDoran()
+	var anilloDoran2 = new AnilloDeDoran()
+	var tomoAmp1 = new TomoAmplificador()
+	var tomoAmp2 = new TomoAmplificador()
+	var tomoAmp3 = new TomoAmplificador()	
+	var sombreroDeRabadon1 = new SombreroDeRabadon()
+	var sombreroDeRabadon2 = new SombreroDeRabadon()
+	
+	test "Etapa 2" {
 		
 		gimli.equiparse(anilloDoran1)
 		gimli.equiparse(tomoAmp1)
@@ -28,24 +30,8 @@ describe "Test Etapa 1 - League of Leyends" {
 		gimli.desequiparse(tomoAmp1)
 		gimli.equiparse(tomoAmp3)
 		gimli.desequiparse(tomoAmp3)				
-
-		
+	
 		assert.that(gimli.estaMuerto())	
 	}
-
-	test "Etapa 1 (test 2)" {
-		
-		pudge.equiparse(sombreroDeRabadon1)  
-		pudge.equiparse(anilloDoran2)
-		pudge.atacarOleada(minions2)
-		pudge.equiparse(tomoAmp2)
-		pudge.atacarOleada(minions2)
-		pudge.desequiparse(sombreroDeRabadon1)
-		pudge.desequiparse(anilloDoran2)
-		
-		assert.equals(pudge.estaMuerto(),false)
-	
-	}	
-
 }
 

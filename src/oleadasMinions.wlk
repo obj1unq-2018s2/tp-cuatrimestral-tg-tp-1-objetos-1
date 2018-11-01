@@ -19,15 +19,7 @@ class OleadaMinions{
 		/* no se usa el setter por si se requiere cambiar el criterio */
 		
 		cantidadDeMinions -= minionsAbatidos
-		
-		//if( cantidadDeMinions >= ataqueCampeon ) {
-		//	cantidadDeMinions -= ataqueCampeon
-		//}
-		//else {
-		//	cantidadDeMinions = 0
-		//}
 	}
-	/*elimina la cantidad de minions dependiendo el ataque que posee el campeon */
 	
 	method recibirAtaque(campeon) {
 		self.defenderseDeAtaque(campeon)
@@ -37,5 +29,4 @@ class OleadaMinions{
 	
 	method estaAbatida() = cantidadDeMinions == 0
 	
-	/*se podria haber evitado este metodo, pero de esta manera podria resultar mas util a futuro */
 }

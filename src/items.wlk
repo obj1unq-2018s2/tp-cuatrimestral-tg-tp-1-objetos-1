@@ -8,7 +8,9 @@ class AnilloDeDoran {
 	method vidaOtorgada(campeon) = 60
 	method ataqueOtorgado(camepon) = 15
 	
-	method activarHabilidad(campeon){ }	// para que sea poliformico
+	method activarHabilidad(campeon){ }	
+	/*este metodo se realiza para no perder el polimorfismo ya que de todas formas no era necesario estrictamente, ya que al tener 
+	 * false en habilidad disponible no entra en el IF que apunta a este metodo*/
 	
 	method consecuenciasDeEquipado(campeon){
 		campeon.modificarDanio(5)
@@ -22,9 +24,6 @@ class AnilloDeDoran {
 class TomoAmplificador {
 	
 	const property precio = 500
-	//const property poseeHabilidad = false	
-	//var property usosDisponiblesDeHabilidad = 1
-	//me parece que con una sola variable estamos bien
 	var property habilidadDisponible = true
 	
 	method activarHabilidad(campeon){
@@ -50,8 +49,6 @@ class TomoAmplificador {
 
 class SombreroDeRabadon inherits TomoAmplificador {
 	
-	//override method poseeHabilidad() = not super() // False
-	//override method habilidadDisponible() = not super()
 	override method habilidadDisponible() = false
 		
 	override method precio() = super() + 100
@@ -72,7 +69,6 @@ class SombreroDeRabadon inherits TomoAmplificador {
 class PosionDeVida {
 	
 	const property precio = 50
-	//const property poseeHabilidad = true	
 	var property usosDisponiblesDeHabilidad = 2
 	
 	method vidaOtorgada(campeon) = 0

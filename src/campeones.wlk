@@ -41,15 +41,6 @@ class Campeon{
 		inventario.remove(item)
 		item.consecuenciasDeDesequipado(self)
 	}
-
-	//method dineroGanadoEnTF(oleada)  { //TF = TEAM FIGHT(por ahora solo hay contra minions)
-	//	if (self.ataque() >= oleada.cantidadDeMinions()){return oleada.cantidadDeMinions()}
-	//	else (return self.ataque())
-	//} 
-	/* es decir, cuando la oleada es abatida recibe como dinero la cantidad de
- 	* minions que tenia dicha oleada, en caso de no ser abatida recibe de dinero el ataque
- 	* del heroe, que es igual a la cantidad de minions abatidos.
- 	*/
 		
 	method atacarOleada(oleada){
 		if (oleada.estaAbatida()) { }

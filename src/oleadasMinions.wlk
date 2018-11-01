@@ -23,7 +23,6 @@ class OleadaMinions{
 	
 	method recibirAtaque(campeon) {
 		self.defenderseDeAtaque(campeon)
-		//self.eliminarMinionsEnTF(campeon)
 		self.eliminarMinions(campeon)
 	}
 	

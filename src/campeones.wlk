@@ -51,6 +51,10 @@ class Campeon{
 		}
 	}
 	
+	method atacarEjercito(ejercito){
+		ejercito.recibirAtaque(self)
+	}
+	
 	method ganarDinero(minionsEliminados) {
 		dineroDisponible += minionsEliminados
 		/* no se usa el setter por si se requiere cambiar el criterio */

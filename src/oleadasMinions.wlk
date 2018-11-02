@@ -1,5 +1,22 @@
 import campeones.*
 
+class EjercitoDeMinions{
+	
+	var property oleadas = []
+	
+	method agregarOleada(oleada){
+		oleadas.add(oleada)
+	}
+	
+	method ejercitoAbatido(){
+		return oleadas.all{oleada => oleada.estaAbatida()}
+	}
+	
+	method recibirAtaque(campeon){
+		oleadas.forEach{oleada => oleada.recibirAtaque(campeon)}
+	}
+}
+
 class OleadaMinions{
 	
 	var property cantidadDeMinions

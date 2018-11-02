@@ -33,7 +33,7 @@ describe "Test complementarios" {
 		assert.that(nocturne.inventario().contains(anilloDeDoran1))
 	}
 	
-	test "Equipamiento, compra y activacion de baston vacio"{
+	test "equipamiento, compra y activacion de baston vacio"{
 		
 		lina.dineroDisponible(800)
 		lina.comprarItem(anilloDeDoran1)

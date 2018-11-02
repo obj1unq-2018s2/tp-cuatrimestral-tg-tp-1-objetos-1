@@ -96,17 +96,15 @@ class BastonVacio{
 		materiales.add(item)
 	}
 	
-	/*method estaDisponible() = true
-	 solo es utilizado en habilidad disponible. 
+
 	
 	method habilidadDisponible() {
-		materiales.map{ item => item.habilidadDisponible() }.any{estadoDeHabilidad => estadoDeHabilidad.estaDisponible()}
+		return materiales.any{item => item.habilidadDisponible()}
 	}
-	toma los materiales(items) del baston vacio y chequea si alguno tiene habilidad disponible, en ese caso el campeon podra activar
-	  la habilidad del baston vacia a pesar de que haya alguno de los items dentro que no tenga habilidad disponible.
-	 */
+	/*toma los materiales(items) del baston vacio y chequea si alguno tiene habilidad disponible, en ese caso el campeon podra activar
+	  la habilidad del baston vacia a pesar de que haya alguno de los items dentro que no tenga habilidad disponible.*/
+	
 	 
-	 method habilidadDisponible() = true
 	
 	method vidaOtorgada(campeon){
 		return	materiales.map{item => item.vidaOtorgada()}.sum() / 2	

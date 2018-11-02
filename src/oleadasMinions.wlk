@@ -1,6 +1,7 @@
 import campeones.*
 
 class OleadaMinions{
+	
 	var property cantidadDeMinions
 	var property plusDanio
 	
@@ -29,3 +30,4 @@ class OleadaMinions{
 	method estaAbatida() = cantidadDeMinions == 0
 	
 }
+

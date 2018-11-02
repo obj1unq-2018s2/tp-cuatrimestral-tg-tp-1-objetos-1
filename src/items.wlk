@@ -28,7 +28,7 @@ class TomoAmplificador {
 	
 	method activarHabilidad(campeon){
 		const dinero = campeon.dineroDisponible().max(500)
-		campeon.dineroDispnible(dinero)
+		campeon.dineroDisponible(dinero)
 		habilidadDisponible = false
 	}
 	/*este metodo se fija si aun no ha sido usada la habilidad, en dicho caso permite su
@@ -84,5 +84,45 @@ class PosionDeVida {
 	}
 	method consecuenciasDeEquipado(campeon){}
 	method consecuenciasDeDesequipado(campeon){}
+	
+}
+
+class BastonVacio{
+	
+	const property precio = 0 	
+	var property materiales = []
+
+	method agregarMaterial(item){
+		materiales.add(item)
+	}
+	
+	/*method estaDisponible() = true
+	 solo es utilizado en habilidad disponible. 
+	
+	method habilidadDisponible() {
+		materiales.map{ item => item.habilidadDisponible() }.any{estadoDeHabilidad => estadoDeHabilidad.estaDisponible()}
+	}
+	toma los materiales(items) del baston vacio y chequea si alguno tiene habilidad disponible, en ese caso el campeon podra activar
+	  la habilidad del baston vacia a pesar de que haya alguno de los items dentro que no tenga habilidad disponible.
+	 */
+	 
+	 method habilidadDisponible() = true
+	
+	method vidaOtorgada(campeon){
+		return	materiales.map{item => item.vidaOtorgada()}.sum() / 2	
+	}
+	
+	method ataqueOtorgado(campeon){
+		return	materiales.map{item => item.ataqueOtorgado()}.sum()
+	}
+	
+	method activarHabilidad(campeon){
+		materiales.forEach{ item => item.activarHabilidad(campeon) }
+	}
+	
+	
+	method consecuenciasDeEquipado(campeon){}
+	method consecuenciasDeDesequipado(campeon){}	
+	
 	
 }

@@ -66,8 +66,13 @@ class Campeon{
 	}
 	
 	method modificarDanio(danio) {
-		danioRecibido += danio 
+		if (-(danio) > danioRecibido) {danioRecibido = 0}
+		else {danioRecibido += danio}
 	}
+	/* solamente entra al IF cuando cumple los siguientes items:
+	 * 1) Se le suma daño en negativo .
+	 * 2) El modulo de ese daño negativo es mayor que el daño recibido.
+	 */
 		
 	method modificarBloqueo(bloqueos) {
 		bloqueosDisponibles += bloqueos 

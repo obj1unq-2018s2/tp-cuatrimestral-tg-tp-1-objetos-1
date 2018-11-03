@@ -45,14 +45,15 @@ class Campeon{
 	method atacarOleada(oleada){
 		if (oleada.estaAbatida()) { }
 		else {
-			//dineroDisponible += self.dineroGanadoEnTF(oleada)
-			//lo calcula con otro metodo que se llama desde el item
 			oleada.recibirAtaque(self)
 		}
 	}
 	
 	method atacarEjercito(ejercito){
-		ejercito.recibirAtaque(self)
+		if (ejercito.estaAbatido()) { }
+		else {
+			ejercito.recibirAtaque(self)
+		}
 	}
 	
 	method ganarDinero(minionsEliminados) {

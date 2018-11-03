@@ -8,12 +8,13 @@ class EjercitoDeMinions{
 		oleadas.add(oleada)
 	}
 	
-	method ejercitoAbatido(){
+	method estaAbatido(){
 		return oleadas.all{oleada => oleada.estaAbatida()}
 	}
 	
 	method recibirAtaque(campeon){
-		oleadas.forEach{oleada => oleada.recibirAtaque(campeon)}
+		const oleadasVivas = oleadas.map({oleada => not oleada.estaAbatida()})
+		oleadasVivas.forEach{oleada => oleada.recibirAtaque(campeon)}
 	}
 }
 

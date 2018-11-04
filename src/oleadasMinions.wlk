@@ -13,8 +13,11 @@ class EjercitoDeMinions{
 	}
 	
 	method recibirAtaque(campeon){
-		const oleadasVivas = oleadas.map({oleada => not oleada.estaAbatida()})
-		oleadasVivas.forEach{oleada => oleada.recibirAtaque(campeon)}
+		self.oleadasVivas().forEach{oleada => oleada.recibirAtaque(campeon)}
+	}
+	
+	method oleadasVivas(){
+		return oleadas.filter({oleada => not oleada.estaAbatida()})
 	}
 }
 

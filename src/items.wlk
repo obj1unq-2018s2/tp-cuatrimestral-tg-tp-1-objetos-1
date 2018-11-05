@@ -49,7 +49,8 @@ class TomoAmplificador {
 
 class SombreroDeRabadon inherits TomoAmplificador {
 	
-	override method habilidadDisponible() = false
+	// override method habilidadDisponible() = super()
+	// no es necesario.
 		
 	override method precio() = super() + 100
 	
@@ -57,7 +58,8 @@ class SombreroDeRabadon inherits TomoAmplificador {
 	
 	override method ataqueOtorgado(campeon) = super(campeon) * 2
 	
-	override method activarHabilidad(campeon){ }	
+	// override method activarHabilidad(campeon) = super()	
+	// no es necesario.
 	
 	override method consecuenciasDeEquipado(campeon){
 		super(campeon)

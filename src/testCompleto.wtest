@@ -9,6 +9,7 @@ describe "Test complementarios" {
 	var lina     = new Campeon(vidaInicial=50 , ataqueInicial=15)
 	
 	//ITEMS
+	var tomoAmplificador1 = new TomoAmplificador()
 	var anilloDeDoran1 = new AnilloDeDoran()
 	var anilloDeDoran2 = new AnilloDeDoran()	
 	var bastonVacio1 = new BastonVacio ()
@@ -39,7 +40,7 @@ describe "Test complementarios" {
 		lina.comprarItem(anilloDeDoran1)
 		lina.comprarItem(anilloDeDoran2)
 		bastonVacio1.agregarMaterial(posionDeVida1)		
-		bastonVacio1.agregarMaterial(sombreroDeRabadon1)		
+		bastonVacio1.agregarMaterial(tomoAmplificador1)	// se cambio sombreor por tomo asi quedaban 500 de dinero.	
 		lina.comprarItem(bastonVacio1)	
 		lina.activarHabilidad(bastonVacio1)
 		assert.equals(lina.danioRecibido(),0)

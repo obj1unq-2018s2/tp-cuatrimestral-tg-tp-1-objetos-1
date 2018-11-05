@@ -57,6 +57,8 @@ class SombreroDeRabadon inherits TomoAmplificador {
 	
 	override method ataqueOtorgado(campeon) = super(campeon) * 2
 	
+	override method activarHabilidad(campeon){ }	
+	
 	override method consecuenciasDeEquipado(campeon){
 		super(campeon)
 		campeon.modificarDanio(5)
@@ -107,11 +109,11 @@ class BastonVacio{
 	 
 	
 	method vidaOtorgada(campeon){
-		return	materiales.map{item => item.vidaOtorgada()}.sum() / 2	
+		return	materiales.sum {item => item.vidaOtorgada(campeon)} / 2	
 	}
 	
 	method ataqueOtorgado(campeon){
-		return	materiales.map{item => item.ataqueOtorgado()}.sum()
+		return	materiales.sum {item => item.ataqueOtorgado(campeon)}
 	}
 	
 	method activarHabilidad(campeon){

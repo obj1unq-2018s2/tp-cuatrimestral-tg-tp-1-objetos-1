@@ -13,8 +13,6 @@ describe "Test complementarios" {
 	var minions3 = new OleadaMinions(cantidadDeMinions=30 , plusDanio =15)
 	var ejercito1 = new EjercitoDeMinions ()
 	
-	//ejercito1.agregarOleada(minions1)
-	
 	// ITEMS
 	var tomoAmplificador1 = new TomoAmplificador()
 	var anilloDoran1 = new AnilloDeDoran()
@@ -73,11 +71,40 @@ describe "Test complementarios" {
 	
 	test "nocturne, con 20 de ataque, ataca a ejercito1 y el ejercito esta vivo debido a minions3" {
 		
-		nocturne.atacarOleada(minions2)
+		ejercito1.agregarOleada(minions1)
+		ejercito1.agregarOleada(minions2)
+		ejercito1.agregarOleada(minions3)
+		nocturne.atacarEjercito(ejercito1)
 		
-		assert.that(minions2.estaAbatida())		
+		assert.notThat(ejercito1.estaAbatido())
+		assert.equals(ejercito1.oleadasVivas(), [minions3])
+		
 	}
-	
+
+	test "nocturne, con 20 de ataque, ataca a ejercito1 y gana 50 de credito
+			(10 de minions1, 20 de minions2 y 20 de minions3)" {
+		
+		ejercito1.agregarOleada(minions1)
+		ejercito1.agregarOleada(minions2)
+		ejercito1.agregarOleada(minions3)
+		nocturne.atacarEjercito(ejercito1)
+		
+		assert.equals(nocturne.dineroDisponible(), 50)
+		
+	}
+
+	test "nocturne, con 20 de ataque, ataca a ejercito1 y recibe está muerto ya que recibe
+			105 de daño" {
+		
+		ejercito1.agregarOleada(minions1)
+		ejercito1.agregarOleada(minions2)
+		ejercito1.agregarOleada(minions3)
+		nocturne.atacarEjercito(ejercito1)
+		
+		assert.that(nocturne.estaMuerto())
+		
+	}
+
 	test "nocturne se equipa con TomoAmplificador, ataca una oleada
 		y dismiye la cantidad de bloqueos disponibles (1) y no recibe daño" {
 		
@@ -88,7 +115,20 @@ describe "Test complementarios" {
 		assert.equals(nocturne.bloqueosDisponibles(), 1)
 		assert.equals(nocturne.danioRecibido(), 0)	
 	}
-	
+
+	test "nocturne se equipa con TomoAmplificador, ataca a ejercito1, se queda sin bloqueos
+		y recibe daño de oleada3 (45)" {
+		
+		nocturne.dineroDisponible(600)
+		nocturne.comprarItem(tomoAmplificador1)
+		ejercito1.agregarOleada(minions1)
+		ejercito1.agregarOleada(minions2)
+		ejercito1.agregarOleada(minions3)
+		nocturne.atacarEjercito(ejercito1)
+		
+		assert.equals(nocturne.bloqueosDisponibles(), 0)
+		assert.equals(nocturne.danioRecibido(), 45)	
+	}	
 	
 	
 }

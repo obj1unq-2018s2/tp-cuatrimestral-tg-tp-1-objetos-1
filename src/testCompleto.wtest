@@ -4,11 +4,18 @@ import oleadasMinions.*
 
 describe "Test complementarios" {
 	
-	//CAMPEONES
+	// CAMPEONES
 	var nocturne = new Campeon(vidaInicial=100 , ataqueInicial=20)
 	
+	// MINIONS
+	var minions1 = new OleadaMinions ( cantidadDeMinions= 10, plusDanio=25)
+	var minions2 = new OleadaMinions(cantidadDeMinions=20 , plusDanio =5)	
+	var minions3 = new OleadaMinions(cantidadDeMinions=30 , plusDanio =15)
+	var ejercito1 = new EjercitoDeMinions ()
 	
-	//ITEMS
+	//ejercito1.agregarOleada(minions1)
+	
+	// ITEMS
 	var tomoAmplificador1 = new TomoAmplificador()
 	var anilloDoran1 = new AnilloDeDoran()
 	var anilloDoran2 = new AnilloDeDoran()	
@@ -28,12 +35,60 @@ describe "Test complementarios" {
 	test "campeon tiene 100 de credito y compra un anillo de doran" {
 		
 		nocturne.dineroDisponible(300)
-		nocturne.comprarItem(anilloDoran1
-		)
+		nocturne.comprarItem(anilloDoran1)
 		
 		assert.equals(nocturne.dineroDisponible(),0)
 		assert.that(nocturne.inventario().contains(anilloDoran1))
 	}
+	
+	// BATALLAS
+	
+	test "nocturne, con 100 de vida, ataca a minons1 y pierde 35 de vida" {
+		
+		nocturne.atacarOleada(minions1)
+		
+		assert.equals(nocturne.danioRecibido(), 35)		
+	}
+	
+	test "nocturne, con 20 de ataque, ataca a minons3 y mueren 20 minions (quedan 10)" {
+		
+		nocturne.atacarOleada(minions3)
+		
+		assert.equals(minions3.cantidadDeMinions(), 10)		
+	}
+	
+	test "nocturne, con 20 de ataque, ataca a minons3, mueren 20 minions y gana 20 de credito" {
+		
+		nocturne.atacarOleada(minions3)
+		
+		assert.equals(nocturne.dineroDisponible(), 20)		
+	}
+
+	test "nocturne, con 20 de ataque, ataca a minons2, mueren 20 minions y la oleada esta muerta" {
+		
+		nocturne.atacarOleada(minions2)
+		
+		assert.that(minions2.estaAbatida())		
+	}
+	
+	test "nocturne, con 20 de ataque, ataca a ejercito1 y el ejercito esta vivo debido a minions3" {
+		
+		nocturne.atacarOleada(minions2)
+		
+		assert.that(minions2.estaAbatida())		
+	}
+	
+	test "nocturne se equipa con TomoAmplificador, ataca una oleada
+		y dismiye la cantidad de bloqueos disponibles (1) y no recibe daño" {
+		
+		nocturne.dineroDisponible(600)
+		nocturne.comprarItem(tomoAmplificador1)
+		nocturne.atacarOleada(minions1)
+		
+		assert.equals(nocturne.bloqueosDisponibles(), 1)
+		assert.equals(nocturne.danioRecibido(), 0)	
+	}
+	
 	
 	
 }

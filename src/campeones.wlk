@@ -38,8 +38,13 @@ class Campeon{
 	}
 	
 	method desequiparse(item){
-		inventario.remove(item)
-		item.consecuenciasDeDesequipado(self)
+		if (inventario.contains(item)) {
+			inventario.remove(item)
+			item.consecuenciasDeDesequipado(self)
+		}
+		else {
+			throw new Exception("No existe item en inventario")
+		}
 	}
 		
 	method atacarOleada(oleada){
@@ -91,7 +96,7 @@ class Campeon{
 			dineroDisponible -= item.precio()
 		}
 		else {
-			throw new UserException("Saldo insuficiente")
+			throw new Exception("Saldo insuficiente")
 		}
 	}
 	
@@ -110,7 +115,4 @@ class Campeon{
 	
 }
 
-class UserException inherits wollok.lang.Exception {
-	constructor(_mensaje) = super(_mensaje)
-}
 

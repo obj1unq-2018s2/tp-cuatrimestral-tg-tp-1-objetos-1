@@ -6,12 +6,12 @@ describe "Test complementarios" {
 	
 	//CAMPEONES
 	var nocturne = new Campeon(vidaInicial=100 , ataqueInicial=20)
-	var lina     = new Campeon(vidaInicial=50 , ataqueInicial=15)
+	
 	
 	//ITEMS
 	var tomoAmplificador1 = new TomoAmplificador()
-	var anilloDeDoran1 = new AnilloDeDoran()
-	var anilloDeDoran2 = new AnilloDeDoran()	
+	var anilloDoran1 = new AnilloDeDoran()
+	var anilloDoran2 = new AnilloDeDoran()	
 	var bastonVacio1 = new BastonVacio ()
 	var sombreroDeRabadon1 = new SombreroDeRabadon()
 	var posionDeVida1 = new PosionDeVida()			
@@ -21,30 +21,19 @@ describe "Test complementarios" {
 	test "campeon quiere comprar item pero no tiene dinero sufiente" {
 		
 		assert.throwsExceptionWithMessage("Saldo insuficiente", { => 
-			nocturne.comprarItem(anilloDeDoran1)
+			nocturne.comprarItem(anilloDoran1)
 		})
 	}
 	
 	test "campeon tiene 100 de credito y compra un anillo de doran" {
 		
 		nocturne.dineroDisponible(300)
-		nocturne.comprarItem(anilloDeDoran1)
+		nocturne.comprarItem(anilloDoran1
+		)
 		
 		assert.equals(nocturne.dineroDisponible(),0)
-		assert.that(nocturne.inventario().contains(anilloDeDoran1))
+		assert.that(nocturne.inventario().contains(anilloDoran1))
 	}
 	
-	test "equipamiento, compra y activacion de baston vacio"{
-		
-		lina.dineroDisponible(800)
-		lina.comprarItem(anilloDeDoran1)
-		lina.comprarItem(anilloDeDoran2)
-		bastonVacio1.agregarMaterial(posionDeVida1)		
-		bastonVacio1.agregarMaterial(sombreroDeRabadon1)
-		lina.comprarItem(bastonVacio1)	
-		lina.activarHabilidad(bastonVacio1)
-		assert.equals(lina.danioRecibido(),0)
-		assert.equals(lina.dineroDisponible(),500)
-	}
 	
 }

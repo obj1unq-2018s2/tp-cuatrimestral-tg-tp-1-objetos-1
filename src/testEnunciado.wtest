@@ -7,6 +7,9 @@ describe "Test Etapa 1 - League of Leyends" {
 	// personajes
 	var gimli = new Campeon( vidaInicial=50 , ataqueInicial=15)
 	var earthShaker = new Campeon(vidaInicial=50 , ataqueInicial=20, dineroDisponible = 300)
+	var lina     = new Campeon(vidaInicial=50 , ataqueInicial=15)
+	
+	// oleadasMinions
 	var minions1 = new OleadaMinions ( cantidadDeMinions= 10, plusDanio=25)
 	var minions2 = new OleadaMinions(cantidadDeMinions=20 , plusDanio =5)	
 	var minions3 = new OleadaMinions(cantidadDeMinions=10 , plusDanio =15)
@@ -14,10 +17,14 @@ describe "Test Etapa 1 - League of Leyends" {
 	
 	// items
 	var anilloDoran1 = new AnilloDeDoran()
+	var anilloDoran2 = new AnilloDeDoran()
 	var tomoAmp1 = new TomoAmplificador()
 	var tomoAmp2 = new TomoAmplificador()
+	var bastonVacio1 = new BastonVacio ()
+	var sombreroDeRabadon1 = new SombreroDeRabadon()
+	var posionDeVida1 = new PosionDeVida()
 	
-	test "Etapa 2" {
+	test "Etapa 2 - Actualizada" {
 		
 		gimli.equiparse(anilloDoran1)
 		gimli.equiparse(tomoAmp1)
@@ -38,8 +45,21 @@ describe "Test Etapa 1 - League of Leyends" {
 		ejercito1.agregarOleada(minions3)
 		earthShaker.atacarEjercito(ejercito1)
 
-		assert.that(ejercito1.ejercitoAbatido())
+		assert.that(ejercito1.estaAbatido())
 		assert.that(earthShaker.estaMuerto())
+	}
+	
+	test "Etapa 2 - equipamiento, compra y activacion de baston vacio"{
+		
+		lina.dineroDisponible(800)
+		lina.comprarItem(anilloDoran1)
+		lina.comprarItem(anilloDoran2)
+		bastonVacio1.agregarMaterial(posionDeVida1)		
+		bastonVacio1.agregarMaterial(sombreroDeRabadon1)
+		lina.comprarItem(bastonVacio1)	
+		lina.activarHabilidad(bastonVacio1)
+		assert.equals(lina.danioRecibido(),0)
+		assert.equals(lina.dineroDisponible(),500)
 	}
 	
 }

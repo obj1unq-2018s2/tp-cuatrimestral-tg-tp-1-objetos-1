@@ -130,18 +130,22 @@ describe "Test complementarios" {
 		assert.equals(nocturne.danioRecibido(), 45)	
 	}	
 
-	test "nocturne se equipa con BastonVacio que tiene un SombreroDeRabadon, ataca a ejercito1 y
-			 se queda sin bloqueos, recibe daño de oleada3 (45) y el ejercito esta abatido" {
+	test "nocturne se equipa con BastonVacio que tiene un SombreroDeRabadon, ataca a ejercito1 
+			y el ejercito esta abatido (ataque = 20 + 40). El daño recibido es de 105 ya que no
+			tiene efectos de equiparse" {
 		
 		bastonVacio1.agregarMaterial(sombreroDeRabadon1)
+		nocturne.comprarItem(bastonVacio1)
 		ejercito1.agregarOleada(minions1)
 		ejercito1.agregarOleada(minions2)
 		ejercito1.agregarOleada(minions3)
 		nocturne.atacarEjercito(ejercito1)
 		
-		assert.equals(nocturne.bloqueosDisponibles(), 0)
-		assert.equals(nocturne.danioRecibido(), 45)
 		assert.that(ejercito1.estaAbatido())
+		assert.equals(nocturne.danioRecibido(), 105)
 	}
+	
+	
+	
 	
 }

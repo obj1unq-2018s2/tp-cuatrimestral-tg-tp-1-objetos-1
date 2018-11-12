@@ -100,7 +100,9 @@ class BastonVacio{
 		materiales.add(item)
 	}
 	
-
+	method quitarMaterial(item) {
+		materiales.remove(item)
+	}
 	
 	method habilidadDisponible() {
 		return materiales.any{item => item.habilidadDisponible()}

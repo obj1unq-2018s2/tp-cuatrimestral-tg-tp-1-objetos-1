@@ -126,19 +126,12 @@ class Soporte inherits Campeon{
 	
 	method vincularCampeon(campeon){campeonVinculado = campeon }
 
-	override method atacarOleada(oleada){
-		if (oleada.estaAbatida()) {}
-		else{
-				oleada.recibirAtaque(self)
-				campeonVinculado.modificarDanio(-10)
-		}
-	}
 	
-	override method atacarEjercito(ejercito){
-		if(ejercito.estaAbatido()){}
-		else{
-				ejercito.recibirAtaque(self)
-				campeonVinculado.modificarDanio(-10)	
+	override method atacarOleada(oleada){
+	if (oleada.estaAbatida()) {}
+	else {
+		super(oleada)
+		campeonVinculado.modificarDanio(-10)
 		}
 	}
 	

@@ -164,7 +164,7 @@ describe "Test complementarios" {
 		
 		assert.that(minions2.estaAbatida())		
 	}
-	
+
 	test "nocturne, con 20 de ataque, ataca a ejercito1 y el ejercito esta vivo debido a minions3" {
 		
 		ejercito1.agregarOleada(minions1)
@@ -173,8 +173,7 @@ describe "Test complementarios" {
 		nocturne.atacarEjercito(ejercito1)
 		
 		assert.notThat(ejercito1.estaAbatido())
-		assert.equals(ejercito1.oleadasVivas(), [minions3])
-		
+		assert.equals(ejercito1.oleadasVivas(), [minions3])		
 	}
 
 	test "nocturne, con 20 de ataque, ataca a ejercito1 y gana 50 de credito
@@ -185,8 +184,7 @@ describe "Test complementarios" {
 		ejercito1.agregarOleada(minions3)
 		nocturne.atacarEjercito(ejercito1)
 		
-		assert.equals(nocturne.dineroDisponible(), 50)
-		
+		assert.equals(nocturne.dineroDisponible(), 50)		
 	}
 
 	test "nocturne, con 20 de ataque, ataca a ejercito1 y recibe está muerto ya que recibe
@@ -197,8 +195,7 @@ describe "Test complementarios" {
 		ejercito1.agregarOleada(minions3)
 		nocturne.atacarEjercito(ejercito1)
 		
-		assert.that(nocturne.estaMuerto())
-		
+		assert.that(nocturne.estaMuerto())	
 	}
 
 	test "nocturne se equipa con TomoAmplificador, ataca una oleada
@@ -239,5 +236,6 @@ describe "Test complementarios" {
 		
 		assert.that(ejercito1.estaAbatido())
 		assert.equals(nocturne.danioRecibido(), 105)
-	}	
+	}
+
 }

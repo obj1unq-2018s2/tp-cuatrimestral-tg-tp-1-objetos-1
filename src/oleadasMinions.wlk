@@ -2,7 +2,7 @@ import campeones.*
 
 class EjercitoDeMinions{
 	
-	var property oleadas = []
+	var property oleadas = #{}
 	
 	method agregarOleada(oleada){
 		oleadas.add(oleada)
@@ -14,17 +14,19 @@ class EjercitoDeMinions{
 	
 	method recibirAtaque(campeon){
 		self.oleadasVivas().forEach{oleada => oleada.recibirAtaque(campeon)}
+		/* no se atacan oleadas muertas */
 	}
 	
 	method oleadasVivas(){
-		return oleadas.filter({oleada => not oleada.estaAbatida()})
+		const oleadasList = oleadas.asList()
+		return oleadasList.filter({oleada => not oleada.estaAbatida()})
 	}
 }
 
 class OleadaMinions{
 	
 	var property cantidadDeMinions
-	var property plusDanio
+	const property plusDanio
 	
 	method danioOcasionado() = cantidadDeMinions + plusDanio
 	

@@ -48,7 +48,7 @@ class Campeon{
 	}
 		
 	method atacarOleada(oleada){
-		if (oleada.estaAbatida()) { }
+		if (oleada.estaAbatida()) {}
 		else {
 			oleada.recibirAtaque(self)
 		}

@@ -10,7 +10,7 @@ class Campeon{
 	
 	var property bloqueosDisponibles = 0
 	var property danioRecibido = 0
-	/*bloqueosDisponibles y danio recibido se modifican durante el equipado
+	/* bloqueosDisponibles y danio recibido se modifican durante el equipado
 	 * y el desequipado de items, ademas dentro de las batallas contra minions */
 	
 	var property inventario = [] // lista de items que tiene el campeon (se usa lista porque puede tener dos items iguales)

@@ -107,7 +107,7 @@ class BastonVacio{
 	method habilidadDisponible() {
 		return materiales.any{item => item.habilidadDisponible()}
 	}
-	/*toma los materiales(items) del baston vacio y chequea si alguno tiene habilidad disponible, en ese caso el campeon podra activar
+	/* toma los materiales(items) del baston vacio y chequea si alguno tiene habilidad disponible, en ese caso el campeon podra activar
 	  la habilidad del baston vacia a pesar de que haya alguno de los items dentro que no tenga habilidad disponible.*/
 	
 	method itemsConHabilidadDisponible(){

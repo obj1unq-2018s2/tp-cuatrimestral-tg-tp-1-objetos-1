@@ -126,12 +126,23 @@ class Soporte inherits Campeon{
 	
 	method vincularCampeon(campeon){campeonVinculado = campeon }
 
+	override method ataque() {
+		return super() + inventario.sum(
+			{ item => item.ataqueOtorgado(self) }
+		)
+	}
+	
+	override method vida() {
+		return super() + inventario.sum(
+			{ item => item.vidaOtorgada(self) }
+		)
+	}
 	
 	override method atacarOleada(oleada){
-	if (oleada.estaAbatida()) {}
-	else {
-		super(oleada)
-		campeonVinculado.modificarDanio(-10)
+		if (oleada.estaAbatida()) {}
+		else {
+			super(oleada)
+			campeonVinculado.modificarDanio(-10)
 		}
 	}
 	

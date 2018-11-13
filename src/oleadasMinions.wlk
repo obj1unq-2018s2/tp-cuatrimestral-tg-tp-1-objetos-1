@@ -2,7 +2,7 @@ import campeones.*
 
 class EjercitoDeMinions{
 	
-	var property oleadas = #{}
+	var property oleadas = []
 	
 	method agregarOleada(oleada){
 		oleadas.add(oleada)
@@ -18,8 +18,7 @@ class EjercitoDeMinions{
 	}
 	
 	method oleadasVivas(){
-		const oleadasList = oleadas.asList()
-		return oleadasList.filter({oleada => not oleada.estaAbatida()})
+		return oleadas.filter({oleada => not oleada.estaAbatida()})
 	}
 }
 

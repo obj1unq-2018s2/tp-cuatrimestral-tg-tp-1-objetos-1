@@ -116,7 +116,7 @@ class Campeon{
 	
 	method estaMuerto() = danioRecibido >= self.vida()
 	
-	method itemsEnInventario() = self.inventario()	
+
 	
 }
 

@@ -86,6 +86,7 @@ class PosionDeVida {
 	method habilidadDisponible() {
 		return usosDisponiblesDeHabilidad != 0
 	}
+
 	method consecuenciasDeEquipado(campeon){}
 	method consecuenciasDeDesequipado(campeon){}
 	
@@ -121,6 +122,7 @@ class BastonVacio{
 	}
 	
 	method activarHabilidad(campeon){
+		// TODO Debería filtrar las disponibles.
 		materiales.forEach{ item => item.activarHabilidad(campeon) }
 	}
 	

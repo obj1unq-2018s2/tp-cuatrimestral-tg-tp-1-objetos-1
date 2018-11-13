@@ -25,6 +25,7 @@ class Campeon{
 	/*es la vida total que tiene un campeon teniendo en cuenta los puntos adicionales otorgados por los items */
 	
 	method ataque() {
+		// TODO self.inventario()
 		return ataqueInicial + inventario.sum(
 			{ item => item.ataqueOtorgado(self) }
 		)
@@ -47,11 +48,16 @@ class Campeon{
 		}
 	}
 		
+	// TODO Se podría unificar con el que sigue
 	method atacarOleada(oleada){
 		if (oleada.estaAbatida()) {}
 		else {
-			oleada.recibirAtaque(self)
+			self.doAtacarOleada(oleada)
 		}
+	}
+
+	method doAtacarOleada(oleada) {
+		oleada.recibirAtaque(self)
 	}
 	
 	method atacarEjercito(ejercito){
@@ -126,6 +132,7 @@ class Soporte inherits Campeon{
 	
 	method vincularCampeon(campeon){campeonVinculado = campeon }
 
+	// TODO Estos dos métodos sobran
 	override method ataque() {
 		return super() + campeonVinculado.inventario().sum(
 			{ item => item.ataqueOtorgado(self) }
@@ -138,12 +145,9 @@ class Soporte inherits Campeon{
 		)
 	}
 	
-	override method atacarOleada(oleada){
-		if (oleada.estaAbatida()) {}
-		else {
-			super(oleada)
-			campeonVinculado.modificarDanio(-10)
-		}
+	override method doAtacarOleada(oleada){
+		super(oleada)
+		campeonVinculado.modificarDanio(-10)
 	}
 	
 	 override method inventario() = super() + campeonVinculado.inventario()

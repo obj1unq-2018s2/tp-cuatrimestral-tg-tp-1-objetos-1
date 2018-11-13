@@ -218,7 +218,8 @@ describe "Test complementarios" {
 		ejercito1.agregarOleada(minions2)
 		ejercito1.agregarOleada(minions3)
 		nocturne.atacarEjercito(ejercito1)
-		
+
+				
 		assert.equals(nocturne.bloqueosDisponibles(), 0)
 		assert.equals(nocturne.danioRecibido(), 45)	
 	}	

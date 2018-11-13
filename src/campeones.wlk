@@ -109,6 +109,9 @@ class Campeon{
 		if (item.habilidadDisponible()) {
 			item.activarHabilidad(self)
 		}
+		else {
+			throw new Exception("Habilidad no disponible")
+		}
 	}
 	
 	method estaMuerto() = danioRecibido >= self.vida()

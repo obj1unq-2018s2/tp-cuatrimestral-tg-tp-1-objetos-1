@@ -15,29 +15,125 @@ describe "Test complementarios" {
 	
 	// ITEMS
 	var tomoAmplificador1 = new TomoAmplificador()
-	var anilloDoran1 = new AnilloDeDoran()
-	var anilloDoran2 = new AnilloDeDoran()	
+	var anilloDoran1 = new AnilloDeDoran()	
 	var bastonVacio1 = new BastonVacio ()
 	var sombreroDeRabadon1 = new SombreroDeRabadon()
 	var posionDeVida1 = new PosionDeVida()			
-		
-	// MANEJO DE INVENTARIO Y DINERO
-	
-	test "campeon quiere comprar item pero no tiene dinero sufiente" {
-		
-		assert.throwsExceptionWithMessage("Saldo insuficiente", { => 
-			nocturne.comprarItem(anilloDoran1)
-		})
-	}
-	
-	test "campeon tiene 100 de credito y compra un anillo de doran" {
-		
-		nocturne.dineroDisponible(300)
+	var posionDeVida2 = new PosionDeVida()			
+ 	var posionDeVida3 = new PosionDeVida()	
+ 	 
+        
+    // MANEJO DE INVENTARIO Y DINERO
+    
+    test "campeon quiere comprar item pero no tiene dinero sufiente" {
+        
+        assert.throwsExceptionWithMessage("Saldo insuficiente", { => 
+         nocturne.comprarItem(anilloDoran1)
+        })
+    }
+    
+    test "campeon tiene 100 de credito y compra un anillo de doran" {
+        
+        nocturne.dineroDisponible(300)
+        nocturne.comprarItem(anilloDoran1)
+        
+        assert.equals(nocturne.dineroDisponible(),0)
+        assert.that(nocturne.inventario().contains(anilloDoran1))
+    }
+    
+    test "campeon con 2k de dinero se compra varios items"{
+        
+        nocturne.dineroDisponible(2000)
+        nocturne.comprarItem(anilloDoran1) 
+        nocturne.comprarItem(sombreroDeRabadon1)
+        nocturne.comprarItem(posionDeVida1)
+        nocturne.comprarItem(posionDeVida2)
+        nocturne.comprarItem(posionDeVida3)
+        nocturne.comprarItem(tomoAmplificador1)        
+        assert.equals(nocturne.dineroDisponible(),450)             
+    }
+    
+    test "campeon con 1k de dinero compra, vende items y chequea inventario"{
+        
+        nocturne.dineroDisponible(1000)
+        assert.throwsExceptionWithMessage("No existe item en inventario",{ 
+        	=> nocturne.venderItem(anilloDoran1)
+        }) 
+        assert.equals(nocturne.dineroDisponible(),1000)
+        nocturne.comprarItem(anilloDoran1)
+        nocturne.comprarItem(sombreroDeRabadon1)
+        assert.equals(nocturne.dineroDisponible(),100)
+        nocturne.venderItem(anilloDoran1)
+        nocturne.venderItem(sombreroDeRabadon1)
+        assert.equals(nocturne.dineroDisponible(),550)
+        assert.equals(nocturne.inventario(),[])
+    
+    }
+    
+	test "Equipado de items, control de vida y ataque"{
+         
+		nocturne.dineroDisponible(2500)
 		nocturne.comprarItem(anilloDoran1)
-		
-		assert.equals(nocturne.dineroDisponible(),0)
-		assert.that(nocturne.inventario().contains(anilloDoran1))
-	}
+		assert.equals(nocturne.danioRecibido(),5)
+		assert.equals(nocturne.vida(),160)
+		assert.equals(nocturne.ataque(),35)
+		nocturne.comprarItem(tomoAmplificador1)
+        assert.equals(nocturne.danioRecibido(),5)
+         assert.equals(nocturne.vida(),161.25)
+         assert.equals(nocturne.ataque(),35.25)
+         nocturne.comprarItem(sombreroDeRabadon1)
+         assert.equals(nocturne.danioRecibido(),10)
+         assert.equals(nocturne.vida(),170)
+         assert.equals(nocturne.ataque(),75.50)         
+                  
+        }
+        
+        test "Desequipado de items, control de vida y ataque (partiendo de base test anterior"{
+         
+         // base test equipado
+         nocturne.dineroDisponible(2500)
+         nocturne.comprarItem(anilloDoran1)
+         assert.equals(nocturne.danioRecibido(),5)
+         assert.equals(nocturne.vida(),160)
+         assert.equals(nocturne.ataque(),35)
+         nocturne.comprarItem(tomoAmplificador1)
+         assert.equals(nocturne.danioRecibido(),5)
+         assert.equals(nocturne.vida(),161.25)
+         assert.equals(nocturne.ataque(),35.25)
+         nocturne.comprarItem(sombreroDeRabadon1)
+         assert.equals(nocturne.danioRecibido(),10)
+         assert.equals(nocturne.vida(),170)
+         assert.equals(nocturne.ataque(),75.50)
+         
+         // test nuevo
+         nocturne.venderItem(anilloDoran1)
+         assert.equals(nocturne.danioRecibido(),0)
+         assert.equals(nocturne.vida(),105)
+         assert.equals(nocturne.ataque(),60)
+         nocturne.venderItem(tomoAmplificador1)
+         assert.equals(nocturne.danioRecibido(),30)
+         assert.equals(nocturne.vida(),112.5)
+         assert.equals(nocturne.ataque(),60)    
+         
+         }
+         
+        test "Probando habilidades"    {
+         
+         nocturne.dineroDisponible(600)
+         nocturne.comprarItem(tomoAmplificador1)
+         nocturne.activarHabilidad(tomoAmplificador1)
+         assert.equals(nocturne.dineroDisponible(),500)
+         nocturne.venderItem(tomoAmplificador1)
+         assert.equals(nocturne.danioRecibido(),30)
+         nocturne.comprarItem(posionDeVida1)
+         nocturne.activarHabilidad(posionDeVida1)
+         nocturne.activarHabilidad(posionDeVida1)    
+         assert.equals(nocturne.danioRecibido(),0)
+         assert.throwsExceptionWithMessage("Habilidad no disponible",{ 
+         	=> nocturne.activarHabilidad(posionDeVida1)
+         })                  
+         
+        }
 	
 	// BATALLAS
 	
@@ -143,9 +239,5 @@ describe "Test complementarios" {
 		
 		assert.that(ejercito1.estaAbatido())
 		assert.equals(nocturne.danioRecibido(), 105)
-	}
-	
-	
-	
-	
+	}	
 }

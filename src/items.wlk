@@ -110,7 +110,9 @@ class BastonVacio{
 	/*toma los materiales(items) del baston vacio y chequea si alguno tiene habilidad disponible, en ese caso el campeon podra activar
 	  la habilidad del baston vacia a pesar de que haya alguno de los items dentro que no tenga habilidad disponible.*/
 	
-	 
+	method itemsConHabilidadDisponible(){
+		return materiales.filter({item => item.habilidadDisponible()})
+	}
 	
 	method vidaOtorgada(campeon){
 		return	materiales.sum {item => item.vidaOtorgada(campeon)} / 2	
@@ -121,7 +123,7 @@ class BastonVacio{
 	}
 	
 	method activarHabilidad(campeon){
-		materiales.forEach{ item => item.activarHabilidad(campeon) }
+		self.itemsConHabilidadDisponible().forEach{ item => item.activarHabilidad(campeon) }
 	}
 	
 	

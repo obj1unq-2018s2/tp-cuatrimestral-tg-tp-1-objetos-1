@@ -122,18 +122,18 @@ class Campeon{
 
 class Soporte inherits Campeon{
 	
-	var property campeonVinculado
+	var property campeonVinculado = null
 	
 	method vincularCampeon(campeon){campeonVinculado = campeon }
 
 	override method ataque() {
-		return super() + inventario.sum(
+		return super() + self.inventario().sum(
 			{ item => item.ataqueOtorgado(self) }
 		)
 	}
 	
 	override method vida() {
-		return super() + inventario.sum(
+		return super() + self.inventario().sum(
 			{ item => item.vidaOtorgada(self) }
 		)
 	}

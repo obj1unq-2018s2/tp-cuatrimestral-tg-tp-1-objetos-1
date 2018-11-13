@@ -127,13 +127,13 @@ class Soporte inherits Campeon{
 	method vincularCampeon(campeon){campeonVinculado = campeon }
 
 	override method ataque() {
-		return super() + self.inventario().sum(
+		return super() + campeonVinculado.inventario().sum(
 			{ item => item.ataqueOtorgado(self) }
 		)
 	}
 	
 	override method vida() {
-		return super() + self.inventario().sum(
+		return super() + campeonVinculado.inventario().sum(
 			{ item => item.vidaOtorgada(self) }
 		)
 	}
@@ -146,7 +146,7 @@ class Soporte inherits Campeon{
 		}
 	}
 	
-	override method inventario() = super() + campeonVinculado.inventario()
+	 override method inventario() = super() + campeonVinculado.inventario()
 	
 	
 }

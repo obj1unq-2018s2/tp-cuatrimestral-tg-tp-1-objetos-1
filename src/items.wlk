@@ -126,19 +126,7 @@ class BastonVacio{
 		self.itemsConHabilidadDisponible().forEach{ item => item.activarHabilidad(campeon) }
 	}
 	
-	
 	method consecuenciasDeEquipado(campeon){}
 	method consecuenciasDeDesequipado(campeon){}	
-	
-	
-}
-bilidad(campeon) }
->>>>>>> branch 'master' of https://github.com/obj1unq-2018s2/tp-cuatrimestral-tg-tp-1-objetos-1.git
-	}
-	
-	
-	method consecuenciasDeEquipado(campeon){}
-	method consecuenciasDeDesequipado(campeon){}	
-	
 	
 }
